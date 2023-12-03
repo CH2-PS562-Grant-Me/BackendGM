@@ -1,8 +1,21 @@
 const { comparePassword } = require('../helpers/bcrypt');
 const accessToken = require('../helpers/jwt');
 const { User } = require('../models');
+const user = require('../models/user');
 
 class UserController {
+
+  static async readAll (req, res) {
+    try {
+      const users = await User.findAll({
+        attributes: ['id', 'nama', 'email']
+      });
+      res.json({ data: users });
+    } catch (error) {
+      res.json(error);
+    }
+  }
+
   static async create(req, res) {
     const { nama, email, password } = req.body;
 
