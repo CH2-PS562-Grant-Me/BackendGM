@@ -1,43 +1,44 @@
-'use strict';
+const dbConfig = require ('../config/config');
+const {Sequelize , DataTypes} = require('sequelize');
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
-const db = {};
+const sequelize = new Sequelize(
+      dbConfig.Database,
+      dbConfig.Username,
+      dbConfig.Password,{
+            host: dbConfig.Host,
+            dialect : dbConfig.dialect,
+            operatorsAliase : false,
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+      pool  :{
+            max : dbConfig.max,
+            min : dbConfig.min,
+            acquire : dbConfig.pool.acquire,
+            idle : dbConfig.pool.idle
+      }
+      }
+)
+sequelize.authenticate()
+.then(()=>{
+      console.log('Terkoneksi')
+})
+.catch(err => {
+      console.log('Error' + err)
+})
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
+const db = {}
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+db.Sequelize = Sequelize
+db.sequelize = sequelize
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+
+db.datasets = require('./datasets')(sequelize, DataTypes)
+
+
+
+
+db.sequelize.sync({force:false})
+.then(()=>{
+      console.log('yes re-sync done!')
+})
 
 module.exports = db;
