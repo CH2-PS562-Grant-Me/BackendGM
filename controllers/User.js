@@ -1,7 +1,6 @@
 const { comparePassword } = require('../helpers/bcrypt');
 const accessToken = require('../helpers/jwt');
 const { User } = require('../models');
-const user = require('../models/user');
 
 class UserController {
 
