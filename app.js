@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var datasetsRouter = require('./routes/datasets')
 
 var app = express();
 
@@ -17,5 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', usersRouter);
+app.use('/',datasetsRouter);
 
 module.exports = app;
