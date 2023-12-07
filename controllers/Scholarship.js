@@ -12,11 +12,11 @@ const addscholarship = async (req, res) => {
                jenis_beasiswa: req.body.jenis_beasiswa,
                deskripsi: req.body.deskripsi,
                link: req.body.link,
-     };
-     const data = await Scholarship.create(scholarship); 
-     res.status(200).send(Scholarship);
+          };
+          const data = await Scholarship.create(scholarship);
+          res.status(200).send(Scholarship);
      } catch (error) {
-     res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
+          res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
      }
 };
 
@@ -30,7 +30,7 @@ const getscholarshipbyId = async (req, res) => {
                res.status(200).send(data);
           } else {
                res.status(404).json({ message: "Beasiswa Tidak Tersedia" });
-     }
+          }
      } catch (error) {
           res.status(500).json({ message: "Gagal Mendapatkan Beasiswa", error: error.message });
      }
@@ -61,7 +61,7 @@ const deletescholarshipbyId = async (req, res) => {
      }
 };
 
-module.exports={
+module.exports = {
      addscholarship,
      getscholarshipbyId,
      updatescholarsip,

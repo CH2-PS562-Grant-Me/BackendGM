@@ -9,29 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama: {
-        type: Sequelize.STRING
-      },
-      no_telpon: {
-        type: Sequelize.STRING
-      },
       foto_profile: {
         type: Sequelize.STRING
       },
-      jenis_kelamin: {
-        type: Sequelize.STRING
-      },
-      tgl_lahir: {
-        type: Sequelize.DATE
-      },
-      transkip: {
-        type: Sequelize.STRING
-      },
-      ktp: {
-        type: Sequelize.STRING
-      },
-      ijazah: {
-        type: Sequelize.STRING
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
