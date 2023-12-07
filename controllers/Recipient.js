@@ -32,39 +32,56 @@ const getrecipientbyId = async (req, res) => {
           let id = req.params.id;
           let data = await Recipient.findOne({ where: { id: id } });
           if (data) {
-               res.status(200).send(data);
+               res.status(200).json({
+                    status: 200,
+                    data: data
+               });
           } else {
                res.status(404).json({ message: "Data tidak ditemukan" });
-     }
+          }
      } catch (error) {
           res.status(500).json({ message: "Gagal Mendapatkan Data", error: error.message });
      }
 };
 
-
-
 //Update Data
 const updaterecepient = async (req, res) => {
      try {
-          let id = req.params.id;
-          let data = await Recipient.update(req.body, { where: { id: id } });
-          res.status(200).send(data);
+          const id = req.params.id;
+          const result = await Recipient.update(req.body, { where: { id: id } });
+          if (result > 0) {
+               const updatedRecipient = await Recipient.findByPk(id);
+               res.status(200).json({
+                    status: 200,
+                    data: updatedRecipient  
+               });
+          } else {
+               res.status(404).json({ status: 404, message: "Data tidak ditemukan" });
+          }
      } catch (error) {
-          res.status(400).json({ message: "Gagal Mengubah Data", error: error.message });
+          console.error(error);
+          res.status(400).json({ status: 400, message: "Gagal Mengubah Data", error: error });
      }
 };
+
 
 
 //delete Data
 const deleterecipientbyId = async (req, res) => {
      try {
-          let id = req.params.id;
-          await Recipient.destroy({ where: { id: id } });
-          res.status(200).send('Data berhasil terhapus');
+          const id = req.params.id; 
+          let recipent = await Recipient.findOne({ where: { id: id } });
+          if (recipent) {
+               await Recipient.destroy({ where: { id: id } });
+               res.status(200).json({ message: "Data berhasil terhapus"});
+          } else {
+               res.status(404).json({ message: "Data tidak ditemukan" });
+          }
      } catch (error) {
-          res.status(500).send('Gagal menghapus data: ' + error.message);
+          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error});
      }
 };
+
 
 module.exports={
      addrecipient,

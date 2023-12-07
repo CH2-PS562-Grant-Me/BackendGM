@@ -24,11 +24,14 @@ module.exports = {
       prestasi_nasional: {
         type: Sequelize.FLOAT
       },
-      penagalaman_magang: {
+      pengalaman_magang: {
         type: Sequelize.FLOAT
       },
       pengalaman_kepanitiaan: {
         type: Sequelize.FLOAT
+      },
+      id_scholarship: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
