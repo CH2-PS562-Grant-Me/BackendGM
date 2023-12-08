@@ -2,19 +2,18 @@
 const {
   Model
 } = require('sequelize');
-const {recipient} = require("./recipient")
 module.exports = (sequelize, DataTypes) => {
-  class scholarship extends Model {
+  class Scholarship extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      scholarship.belongsTo(recipient)
+      Scholarship.belongsTo(models.Recipient)
     }
   }
-  scholarship.init({
+  Scholarship.init({
     nama: DataTypes.STRING,
     tenggat_waktu: DataTypes.DATE,
     jenis_beasiswa: DataTypes.STRING,
@@ -22,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     link: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'scholarship',
+    modelName: 'Scholarship',
   });
-  return scholarship;
+  return Scholarship;
 };

@@ -15,14 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Profile.init({
-    nama: DataTypes.STRING,
-    no_telpon: DataTypes.STRING,
     foto_profile: DataTypes.STRING,
-    jenis_kelamin: DataTypes.STRING,
-    tgl_lahir: DataTypes.DATE,
-    transkip: DataTypes.STRING,
-    ktp: DataTypes.STRING,
-    ijazah: DataTypes.STRING
+    user_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Profile',

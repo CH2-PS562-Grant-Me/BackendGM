@@ -1,5 +1,5 @@
 const { comparePassword } = require('../helpers/bcrypt');
-const accessToken = require('../helpers/jwt');
+const { accessToken } = require('../helpers/jwt');
 const { User } = require('../models');
 
 const register = async (req, res) => {

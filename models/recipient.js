@@ -2,8 +2,6 @@
 const {
   Model
 } = require('sequelize');
-
-const{scholarship} = require('./scholarship')
 module.exports = (sequelize, DataTypes) => {
   class Recipient extends Model {
     /**
@@ -12,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Recipient.hasOne(scholarship)
+      Recipient.hasOne(models.Scholarship)
     }
   }
   Recipient.init({

@@ -2,8 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const hashPassword = require('../helpers/bcrypt');
-const profile = require('./profile');
+const { hashPassword } = require('../helpers/bcrypt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasOne(models.profile)
+      User.hasOne(models.Profile)
     }
   }
   User.init({
@@ -24,27 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique:true,
-      validate: {
-        isEmail: {
-          msg: 'Email invalid'
-        },
-        notEmpty: true
-      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Password tidak boleh kosong'
-        }
-      }
     },
   }, {
     sequelize,
     modelName: 'User',
     hooks: {
-      beforeCreate: function (user, op, fn) {
+      beforeCreate: function (user, op, fn){
         user.password = hashPassword(user.password)
       }
     }
