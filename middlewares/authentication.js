@@ -13,4 +13,4 @@ const authectication = (req, res, next) => {
   }
 }
 
-module.exports = authectication
+module.exports = { authectication }

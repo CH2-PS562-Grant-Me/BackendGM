@@ -1,5 +1,5 @@
 const express = require('express')
-const {Recipient} = require('../models/')
+const { Recipient } = require('../models/')
 
 
 //POST data
@@ -14,14 +14,14 @@ const addrecipient = async (req, res) => {
                prestasi_nasional: req.body.prestasi_nasional,
                pengalaman_magang: req.body.pengalaman_magang,
                pengalaman_kepanitiaan: req.body.pengalaman_kepanitiaan,
-     };
-     const Data = await Recipient.create(data); 
-     res.status(201).json({
-          status: 201,
-          data: Data,
-     });
+          };
+          const Data = await Recipient.create(data);
+          res.status(201).json({
+               status: 201,
+               data: Data,
+          });
      } catch (error) {
-     res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
+          res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
      }
 };
 
@@ -44,6 +44,18 @@ const getrecipientbyId = async (req, res) => {
      }
 };
 
+const getAllRecipients = async (req, res) => {
+     try {
+          let data = await Recipient.findAll()
+          res.status(200).json({
+               status: 200,
+               data: data
+          })
+     } catch (error) {
+          res.status(400).json({ error: error.message })
+     }
+}
+
 //Update Data
 const updaterecepient = async (req, res) => {
      try {
@@ -53,7 +65,7 @@ const updaterecepient = async (req, res) => {
                const updatedRecipient = await Recipient.findByPk(id);
                res.status(200).json({
                     status: 200,
-                    data: updatedRecipient  
+                    data: updatedRecipient
                });
           } else {
                res.status(404).json({ status: 404, message: "Data tidak ditemukan" });
@@ -69,22 +81,23 @@ const updaterecepient = async (req, res) => {
 //delete Data
 const deleterecipientbyId = async (req, res) => {
      try {
-          const id = req.params.id; 
+          const id = req.params.id;
           let recipent = await Recipient.findOne({ where: { id: id } });
           if (recipent) {
                await Recipient.destroy({ where: { id: id } });
-               res.status(200).json({ message: "Data berhasil terhapus"});
+               res.status(200).json({ message: "Data berhasil terhapus" });
           } else {
                res.status(404).json({ message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error});
+          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error });
      }
 };
 
 
-module.exports={
+module.exports = {
      addrecipient,
+     getAllRecipients,
      getrecipientbyId,
      updaterecepient,
      deleterecipientbyId

@@ -6,8 +6,10 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const authRotuer = require('./routes/auth')
-const recipientsRouter = require('./routes/recipients')
+const authRotuer = require('./routes/auth');
+const recipientsRouter = require('./routes/recipients');
+const { errorHandler } = require('./middlewares/errorHandler');
+const { authectication } = require('./middlewares/authentication');
 
 
 const app = express();
@@ -20,7 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRotuer);
-app.use('/users', usersRouter);
-app.use('/', recipientsRouter);
+app.use('/users', authectication, usersRouter);
+app.use('/recipients', recipientsRouter);
+app.use(errorHandler)
 
 module.exports = app;

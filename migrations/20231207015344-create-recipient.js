@@ -10,27 +10,35 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       IPK: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       sertifikasi: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       prestasi_internasional: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       prestasi_top3_nasional: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       prestasi_nasional: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       pengalaman_magang: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       pengalaman_kepanitiaan: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       id_scholarship: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

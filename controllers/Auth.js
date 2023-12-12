@@ -2,7 +2,7 @@ const { comparePassword } = require('../helpers/bcrypt');
 const { accessToken } = require('../helpers/jwt');
 const { User } = require('../models');
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   const { nama, email, password } = req.body;
 
   try {
@@ -10,7 +10,10 @@ const register = async (req, res) => {
       where: { email }
     })
     if (user) {
-      res.status(400).json({ message: 'Email telah terdaftar' })
+      next({
+        status: 422,
+        message: 'Email telah terdaftar'
+      })
     } else {
       const user = await User.create({
         nama,
@@ -24,12 +27,12 @@ const register = async (req, res) => {
       });
     }
 
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+  } catch (next) {
+    next
   }
 }
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body
 
   try {
@@ -53,15 +56,19 @@ const login = async (req, res) => {
       })
     }
     else {
-      res.status(400).json({
-        error: 'Invalid email/password'
+      next({
+        status: 401,
+        message: 'Invalid email/password'
       })
     }
 
   }
   catch (err) {
-    res.status(400).json({
-      error: 'Invalid email/password'
+    next({
+      err: {
+        status: 500,  
+        message: 'Internal Server Error'
+      }
     })
   };
 }
