@@ -2,26 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('scholarships', {
+    await queryInterface.createTable('Articles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama: {
+      NamaPenerima: {
         type: Sequelize.STRING
       },
-      tenggat_waktu: {
-        type: Sequelize.DATE
-      },
-      jenis_beasiswa: {
+      TahunMenerima: {
         type: Sequelize.STRING
       },
-      deskripsi: {
+      NamaBeasiswa: {
         type: Sequelize.STRING
       },
-      link: {
+      Universitas: {
+        type: Sequelize.STRING
+      },
+      Ulasan: {
+        type: Sequelize.STRING
+      },
+      Sumber: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -35,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('scholarships');
+    await queryInterface.dropTable('Articles');
   }
 };

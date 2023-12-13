@@ -1,25 +1,42 @@
 const express = require('express')
-const Scholarship = require('../models/scholarship')
+const { Scholarship } = require('../models');
+const { getAllRecipients } = require('./Recipient');
 
 
 //POST data
-
 const addscholarship = async (req, res) => {
      try {
-          let scholarship = {
+          let inputData = {
                nama: req.body.nama,
                tenggat_waktu: req.body.tenggat_waktu,
                jenis_beasiswa: req.body.jenis_beasiswa,
                deskripsi: req.body.deskripsi,
                link: req.body.link,
           };
-          const data = await Scholarship.create(scholarship);
-          res.status(200).send(Scholarship);
+          const createdScholarship = await Scholarship.create(inputData);
+          res.status(201).json({
+               status: "Data Berhasil Ditambahkan",
+               data: createdScholarship,
+          });
      } catch (error) {
-          res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
+          console.error("Gagal Menambahkan Data:", error);
+          res.status(400).json({ status: "Gagal Menambahkan Data", error: error.message });
      }
 };
 
+
+//GET ALL Scholarship
+const getAllscholarship = async(req,res)=>{
+     try{
+          let data = await Scholarship.findAll({})
+          res.status(200).json({
+               status: 200,
+               data: data
+          })
+     } catch (error){
+          res.status(500).json({error:error.message})
+     }
+}
 
 //Get Data by id
 const getscholarshipbyId = async (req, res) => {
@@ -27,43 +44,63 @@ const getscholarshipbyId = async (req, res) => {
           let id = req.params.id;
           let data = await Scholarship.findOne({ where: { id: id } });
           if (data) {
-               res.status(200).send(data);
+               res.status(200).json({
+                    status: 200,
+                    data: data
+               });
           } else {
-               res.status(404).json({ message: "Beasiswa Tidak Tersedia" });
+               res.status(404).json({ message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ message: "Gagal Mendapatkan Beasiswa", error: error.message });
+          res.status(500).json({ message: "Gagal Mendapatkan Data", error: error.message });
      }
 };
-
 
 
 //Update Data
 const updatescholarsip = async (req, res) => {
      try {
-          let id = req.params.id;
-          let data = await Scholarship.update(req.body, { where: { id: id } });
-          res.status(200).send(data);
+          const id = req.params.id;
+          const result = await Scholarship.update(req.body, { where: { id: id } });
+          if (result > 0) {
+               const updatedScholarship = await scholarships.findByPk(id);
+               res.status(200).json({
+                    message: "Data Berhasil di Ubah",
+                    data: updatedScholarship
+               });
+          } else {
+               res.status(404).json({ status: 404, message: "Data tidak ditemukan" });
+          }
      } catch (error) {
-          res.status(400).json({ message: "Gagal Mengubah Beasiswa", error: error.message });
+          console.error(error);
+          res.status(400).json({ status: 400, message: "Gagal Mengubah Data", error: error });
      }
 };
 
 
 //delete Data
-const deletescholarshipbyId = async (req, res) => {
+const  deletescholarshipbyId = async (req, res) => {
      try {
-          let id = req.params.id;
-          await Scholarship.destroy({ where: { id: id } });
-          res.status(200).send('Data berhasil terhapus');
+          const id = req.params.id;
+          let scholarship = await Scholarship.findOne({ where: { id: id } });
+          if (scholarship) {
+               await scholarship.destroy({ where: { id: id } });
+               res.status(204).json({
+                    message: "Data Berhasil di Hapus",
+               });
+          } else {
+               res.status(404).json({ message: "Data tidak ditemukan" });
+          }
      } catch (error) {
-          res.status(500).send('Gagal menghapus data: ' + error.message);
+          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error });
      }
 };
 
 module.exports = {
      addscholarship,
+     getAllscholarship,
      getscholarshipbyId,
      updatescholarsip,
-     deletescholarshipbyId
+     deletescholarshipbyId,
 }
+
