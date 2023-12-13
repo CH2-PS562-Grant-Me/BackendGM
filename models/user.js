@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique:true,
+      validate: {
+        isEmail: {
+          msg: 'Email is invalid',
+        }
+      }
     },
     password: {
       type: DataTypes.STRING,
@@ -31,11 +36,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    hooks: {
-      beforeCreate: function (user, op, fn){
-        user.password = hashPassword(user.password)
-      }
-    }
   });
   return User;
 };

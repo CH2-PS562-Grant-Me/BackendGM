@@ -1,8 +1,8 @@
-const { comparePassword } = require('../helpers/bcrypt');
+const { comparePassword, hashPassword } = require('../helpers/bcrypt');
 const { accessToken } = require('../helpers/jwt');
 const { User } = require('../models');
 
-const register = async (req, res, next) => {
+const register = async (req, res) => {
   const { nama, email, password } = req.body;
 
   try {
@@ -10,7 +10,7 @@ const register = async (req, res, next) => {
       where: { email }
     })
     if (user) {
-      next({
+      res.status(422).json({
         status: 422,
         message: 'Email telah terdaftar'
       })
@@ -18,7 +18,7 @@ const register = async (req, res, next) => {
       const user = await User.create({
         nama,
         email,
-        password
+        password: await hashPassword(password)
       });
       res.status(201).json({
         status: 201,
@@ -27,12 +27,14 @@ const register = async (req, res, next) => {
       });
     }
 
-  } catch (next) {
-    next
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
   }
 }
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body
 
   try {
@@ -56,7 +58,7 @@ const login = async (req, res, next) => {
       })
     }
     else {
-      next({
+      res.status(401).json({
         status: 401,
         message: 'Invalid email/password'
       })
@@ -64,7 +66,7 @@ const login = async (req, res, next) => {
 
   }
   catch (err) {
-    next({
+    res.status(500).json({
       err: {
         status: 500,  
         message: 'Internal Server Error'
