@@ -1,5 +1,5 @@
 const express = require('express')
-const { Recipient } = require('../models/')
+const { Recipient } = require('../models')
 
 
 //POST data
@@ -17,7 +17,7 @@ const addrecipient = async (req, res) => {
           };
           const Data = await Recipient.create(data);
           res.status(201).json({
-               status: 201,
+               status: "Data Berhasil Ditambahkan",
                data: Data,
           });
      } catch (error) {
@@ -44,15 +44,16 @@ const getrecipientbyId = async (req, res) => {
      }
 };
 
+//Get All Recipient
 const getAllRecipients = async (req, res) => {
      try {
-          let data = await Recipient.findAll()
+          let data = await Recipient.findAll({})
           res.status(200).json({
                status: 200,
                data: data
           })
      } catch (error) {
-          res.status(400).json({ error: error.message })
+          res.status(500).json({ error: error.message })
      }
 }
 
@@ -65,10 +66,11 @@ const updaterecepient = async (req, res) => {
                const updatedRecipient = await Recipient.findByPk(id);
                res.status(200).json({
                     status: 200,
+                    message: "Data Berhasil di Ubah",
                     data: updatedRecipient
                });
           } else {
-               res.status(404).json({ status: 404, message: "Data tidak ditemukan" });
+               res.status(404).json({ message: "Data tidak ditemukan" });
           }
      } catch (error) {
           console.error(error);
@@ -82,17 +84,24 @@ const updaterecepient = async (req, res) => {
 const deleterecipientbyId = async (req, res) => {
      try {
           const id = req.params.id;
-          let recipent = await Recipient.findOne({ where: { id: id } });
-          if (recipent) {
+          let recipient = await Recipient.findOne({ where: { id: id } });
+          if (recipient) {
                await Recipient.destroy({ where: { id: id } });
-               res.status(200).json({ message: "Data berhasil terhapus" });
+               res.status(204).json({
+                    message: "Data Berhasil di Hapus",
+               });
           } else {
                res.status(404).json({ message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error });
+          if (error instanceof Sequelize.ValidationError) {
+               res.status(400).json({ status: 400, message: "Validation error", error: error });
+          } else {
+               res.status(500).json({ status: 500, message: "Gagal Menghapus Data", error: error });
+          }
      }
 };
+
 
 
 module.exports = {
