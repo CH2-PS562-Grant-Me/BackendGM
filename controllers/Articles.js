@@ -1,9 +1,8 @@
 const express = require('express')
-const { Article } = require('../models/article')
+const { Article } = require('../models')
 
 
 //add
-
 const addarticle = async (req, res) => {
      try {
           let article = {
@@ -25,21 +24,15 @@ const addarticle = async (req, res) => {
 };
 
 // Get All
-const getAllarticle = async(req, res)=>{
+const getAllarticle= async(req,res)=>{
      try{
-          let articles = await Article.findAll({})
-          if(articles){
-               res.status(200).json({
-                    status: 200,
-                    data: data
-               })
-          }else{
-               res.status(404).json({ message: "Artikel Tidak Tersedia" });
-          }
-     }catch(error){
+          let data = await Article.findAll({})
+          res.status(200).json({
+               data: data
+          })
+     } catch (error){
           res.status(500).json({message:"Gagal Mendapatkan Data",error: error.message})
      }
-     
 }
 
 module.exports = {

@@ -30,7 +30,6 @@ const getAllscholarship = async(req,res)=>{
      try{
           let data = await Scholarship.findAll({})
           res.status(200).json({
-               status: 200,
                data: data
           })
      } catch (error){
