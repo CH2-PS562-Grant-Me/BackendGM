@@ -6,10 +6,10 @@ const register = async (req, res) => {
   const { nama, email, password } = req.body;
 
   try {
-    const user = await User.findOne({
+    const userExists = await User.findOne({
       where: { email }
     })
-    if (user) {
+    if (userExists) {
       res.status(422).json({
         status: 422,
         message: 'Email telah terdaftar'
@@ -22,7 +22,7 @@ const register = async (req, res) => {
       });
       res.status(201).json({
         status: 201,
-        message: 'success',
+        message: 'Akun berhasil terdaftar',
         data: user
       });
     }
@@ -48,6 +48,7 @@ const login = async (req, res) => {
         email: user.email
       }
       let token = accessToken(payload)
+      res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true })
       res.status(200).json({
         status: 200,
         data: {

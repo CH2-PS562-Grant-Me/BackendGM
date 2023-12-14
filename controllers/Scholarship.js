@@ -1,6 +1,7 @@
 const express = require('express')
 const { Scholarship } = require('../models');
 const { getAllRecipients } = require('./Recipient');
+const axios = require('axios');
 
 
 //POST data
@@ -26,15 +27,15 @@ const addscholarship = async (req, res) => {
 
 
 //GET ALL Scholarship
-const getAllscholarship = async(req,res)=>{
-     try{
+const getAllscholarship = async (req, res) => {
+     try {
           let data = await Scholarship.findAll({})
           res.status(200).json({
                status: 200,
                data: data
           })
-     } catch (error){
-          res.status(500).json({error:error.message})
+     } catch (error) {
+          res.status(500).json({ error: error.message })
      }
 }
 
@@ -79,7 +80,7 @@ const updatescholarsip = async (req, res) => {
 
 
 //delete Data
-const  deletescholarshipbyId = async (req, res) => {
+const deletescholarshipbyId = async (req, res) => {
      try {
           const id = req.params.id;
           let scholarship = await Scholarship.findOne({ where: { id: id } });
@@ -96,11 +97,29 @@ const  deletescholarshipbyId = async (req, res) => {
      }
 };
 
+const recomendScholarship = async (req, res) => {
+     try {
+          const getPredict = await axios.post(process.env.URL_PREDICT, {
+               Tag_Beasiswa: Tag_Beasiswa,
+               statusCode: statusCode
+          })
+
+          const predictScholarship = getPredict.data
+          res.json({ predictScholarship })
+     }
+     catch (error) {
+          res.json({
+               message: error.message
+          })
+     }
+}
+
 module.exports = {
      addscholarship,
      getAllscholarship,
      getscholarshipbyId,
      updatescholarsip,
      deletescholarshipbyId,
+     recomendScholarship
 }
 

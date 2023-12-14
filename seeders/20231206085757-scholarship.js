@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Scholarship', [{
+    await queryInterface.bulkInsert('Scholarships', [{
       nama: 'Djarum',
       jenis_beasiswa: 'Pemerintah',
       tenggat_waktu: new Date('2023-12-31'),
@@ -41,7 +41,7 @@ module.exports = {
     },
     {
       nama: 'Pertamina Sobat Bumi',
-      jenis_beasiswa: 'Bantuan Pemerintah',
+      jenis_beasiswa: 'Pemerintah',
       tenggat_waktu: new Date('2023-12-15'),
       deskripsi: 'Beasiswa untuk mahasiswa yang membutuhkan bantuan keuangan.',
       link: 'https://beasiswa.pertaminafoundation.org/home/beasiswa/sobatbumi',
@@ -59,7 +59,7 @@ module.exports = {
     },
     {
       nama: 'BSI Scholarship',
-      jenis_beasiswa: 'Pemerintah',
+      jenis_beasiswa: 'Swasta',
       tenggat_waktu: new Date('2023-12-15'),
       deskripsi: 'Beasiswa untuk mahasiswa yang membutuhkan bantuan keuangan.',
       link: 'https://didikumat.org/bsi-scholarship',
@@ -160,12 +160,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Scholarship');
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Scholarships');
   }
 };
