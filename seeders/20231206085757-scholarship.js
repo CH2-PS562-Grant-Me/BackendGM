@@ -179,7 +179,7 @@ module.exports = {
       jenis_beasiswa: 'Bantuan',
       tanggal_pendaftaran: new Date('2023-10-16'),
       deskripsi: 'BAKTI NUSA merupakan Program penumbuhan kepemimpinan aktivis mahasiswa untuk membentuk pemimpin Berintegritas, Cendekia, Transformatif, dan Melayani Masyarakat. Syarat pendaftaran : Mahasiswa muslim semester 7 dengan IPK minimal 3.00.',
-      img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Group%202129.png',
+      img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Bakti%20Nusa.png',
       link: 'https://www.baktinusa.id/',
       createdAt: new Date(),
       updatedAt: new Date(),

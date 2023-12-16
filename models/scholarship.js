@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Scholarship.hasOne(models.Recipient)
+      // Scholarship.hasOne(models.Recipient)
     }
   }
   Scholarship.init({
     nama: DataTypes.STRING,
-    tanggal_pendaftaran: DataTypes.DATE,
     jenis_beasiswa: DataTypes.STRING,
+    tanggal_pendaftaran: DataTypes.DATE,
     deskripsi: DataTypes.STRING,
     img_url: DataTypes.STRING,
     link: DataTypes.STRING

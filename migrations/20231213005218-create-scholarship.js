@@ -12,11 +12,11 @@ module.exports = {
       nama: {
         type: Sequelize.STRING
       },
-      tanggal_pendaftaran: {
-        type: Sequelize.DATE
-      },
       jenis_beasiswa: {
         type: Sequelize.STRING
+      },
+      tanggal_pendaftaran: {
+        type: Sequelize.DATE
       },
       deskripsi: {
         type: Sequelize.STRING
