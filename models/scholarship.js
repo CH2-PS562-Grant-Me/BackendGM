@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Scholarship.init({
     nama: DataTypes.STRING,
-    tenggat_waktu: DataTypes.DATE,
+    tanggal_pendaftaran: DataTypes.DATE,
     jenis_beasiswa: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
     img_url: DataTypes.STRING,

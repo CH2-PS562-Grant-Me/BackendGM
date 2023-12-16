@@ -12,7 +12,7 @@ module.exports = {
       nama: {
         type: Sequelize.STRING
       },
-      tenggat_waktu: {
+      tanggal_pendaftaran: {
         type: Sequelize.DATE
       },
       jenis_beasiswa: {
