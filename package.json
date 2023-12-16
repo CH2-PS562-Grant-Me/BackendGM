@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate": "npx sequelize db:migrate",
-    "migrate:undo": "npx sequelize db:migrate:undo:all"
+    "migrate:undo": "npx sequelize db:migrate:undo:all",
+    "seed:all": "npx sequelize db:seed:all",
+    "seed:undo": "npx sequelize db:seed:undo:all"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.7.0",
