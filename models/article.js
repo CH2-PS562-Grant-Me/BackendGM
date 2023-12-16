@@ -14,12 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Article.init({
-    NamaPenerima: DataTypes.STRING,
-    TahunMenerima: DataTypes.STRING,
-    NamaBeasiswa: DataTypes.STRING,
-    Universitas: DataTypes.STRING,
-    Ulasan: DataTypes.STRING,
-    Sumber: DataTypes.STRING
+    nama_penerima: DataTypes.STRING,
+    tahun: DataTypes.STRING,
+    beasiswa: DataTypes.STRING,
+    universitas: DataTypes.STRING,
+    ulasan: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Article',
