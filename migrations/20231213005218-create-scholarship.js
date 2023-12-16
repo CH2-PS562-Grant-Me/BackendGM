@@ -21,6 +21,9 @@ module.exports = {
       deskripsi: {
         type: Sequelize.STRING
       },
+      img_url: {
+        type: Sequelize.STRING
+      },
       link: {
         type: Sequelize.STRING
       },

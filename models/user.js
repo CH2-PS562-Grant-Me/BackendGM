@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 const { hashPassword } = require('../helpers/bcrypt');
+const { Profile } = require('./profile'); 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -11,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasOne(models.Profile)
+      User.hasOne(models.Profile, {
+        foreignKey: 'user_id'
+      })
     }
   }
   User.init({
@@ -36,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+  });
+  User.afterCreate(async (user) => {
+    await Profile.create({ user_id: user.id });
   });
   return User;
 };

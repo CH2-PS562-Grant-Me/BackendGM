@@ -10,6 +10,7 @@ const authRotuer = require('./routes/auth');
 const articlesRouter = require('./routes/articles');
 const recipientsRouter = require('./routes/recipients');
 const scholarshipRouter = require('./routes/scholarship');
+const profileRouter = require('./routes/profile');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { authectication } = require('./middlewares/authentication');
 
@@ -28,6 +29,7 @@ app.use('/users', authectication, usersRouter);
 app.use('/recipients', recipientsRouter);
 app.use('/articles', articlesRouter);
 app.use('/scholarships', scholarshipRouter);
-app.use(errorHandler)
+app.use('/profile', profileRouter);
+app.use(errorHandler);
 
 module.exports = app;

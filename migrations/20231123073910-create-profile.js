@@ -9,12 +9,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      foto_profile: {
+      img_url: {
         type: Sequelize.STRING
       },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'users', 
+          key: 'id', 
+       }
       },
       createdAt: {
         allowNull: false,

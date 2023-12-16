@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     tenggat_waktu: DataTypes.DATE,
     jenis_beasiswa: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
+    img_url: DataTypes.STRING,
     link: DataTypes.STRING
   }, {
     sequelize,
