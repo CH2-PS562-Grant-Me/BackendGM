@@ -14,7 +14,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       tahun: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       beasiswa: {
@@ -26,6 +25,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       ulasan: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      sumber: {
         allowNull: false,
         type: Sequelize.STRING
       },
