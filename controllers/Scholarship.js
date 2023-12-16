@@ -31,7 +31,6 @@ const getAllscholarship = async (req, res) => {
      try {
           let data = await Scholarship.findAll({})
           res.status(200).json({
-               status: 200,
                data: data
           })
      } catch (error) {
@@ -98,17 +97,51 @@ const deletescholarshipbyId = async (req, res) => {
 };
 
 const recomendScholarship = async (req, res) => {
+     // try{
+     //      const response = await axios.get('https://doa-doa-api-ahmadramadhan.fly.dev/api')
+     //      const data = response.data
+     //      // console.log(data)
+     //      res.json({data})
+     // }catch(error){
+     //      res.json({error})
+     // }
+     const { IPK,
+          Sertifikat,
+          SertifikatProfesional,
+          prestasiNasional,
+          lombaNasional,
+          prestasiInternasional,
+          lombainternasional,
+          internMagang,
+          Kepanitiaan } = req.body
+
      try {
-          const getPredict = await axios.post(process.env.URL_PREDICT, {
-               Tag_Beasiswa: Tag_Beasiswa,
-               statusCode: statusCode
+          const getPredict = await axios.post('http://127.0.0.1:5000/predict', {
+               IPK,
+               Sertifikat,
+               SertifikatProfesional,
+               prestasiNasional,
+               lombaNasional,
+               prestasiInternasional,
+               lombainternasional,
+               internMagang,
+               Kepanitiaan
           })
 
-          const predictScholarship = getPredict.data
-          res.json({ predictScholarship })
+          
+
+          const data = getPredict.data
+          // console.log(getPredict)
+          res.status(200).json({
+               status: 200,
+               data: {
+                    "Persentase ": data.Persentase,
+                    "Tag ": data.Tag,
+               }
+          })
      }
      catch (error) {
-          res.json({
+          res.status(400).json({
                message: error.message
           })
      }

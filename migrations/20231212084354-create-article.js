@@ -9,22 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      NamaPenerima: {
+      nama_penerima: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      TahunMenerima: {
+      tahun: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      NamaBeasiswa: {
+      beasiswa: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Universitas: {
+      universitas: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Ulasan: {
-        type: Sequelize.STRING
-      },
-      Sumber: {
+      ulasan: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
