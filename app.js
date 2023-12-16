@@ -27,7 +27,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRotuer);
 app.use('/users', authectication, usersRouter);
 app.use('/recipients', recipientsRouter);
-app.use('/articles', articlesRouter);
+app.use('/articles', authectication, articlesRouter);
 app.use('/scholarships', scholarshipRouter);
 app.use('/profile', profileRouter);
 app.use(errorHandler);

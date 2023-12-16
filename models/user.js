@@ -35,13 +35,19 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: { 
+          args: [8, 42],
+          msg: "The password length should be 8 characters."
+       }
+      }
     },
   }, {
     sequelize,
     modelName: 'User',
   });
-  User.afterCreate(async (user) => {
-    await Profile.create({ user_id: user.id });
-  });
+  // User.afterCreate(async (user) => {
+  //   await Profile.create({ user_id: user.id });
+  // });
   return User;
 };

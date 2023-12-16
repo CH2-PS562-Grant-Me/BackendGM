@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert('Scholarships', [{
       nama: 'Djarum',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-05-27'),
+      tanggal_pendaftaran: new Date('2023-05-27'),
       deskripsi: 'Yang membedakan Djarum Beasiswa Plus dengan beasiswa lain adalah selain mendapatkan dana beasiswa selama satu tahun, juga mendapatkan berbagai macam pekatihan soft skill (keterampilan lunak) mengembangkan wawasan kebangsaan, membentuk karakter serta melatih kepemimpinan.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Djarum.png',
       link: 'https://djarumbeasiswaplus.org/',
@@ -16,7 +16,7 @@ module.exports = {
     {
       nama: 'Karya Salemba Empat',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-04-30'),
+      tanggal_pendaftaran: new Date('2023-04-30'),
       deskripsi: 'Beasiswa berupa tunjangan pendidikan akan diberikan kepada program studi Strata 1 (S1) yang telah menempuh  pendidikan minimal di semester kedua.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beassiwa%20KSE.png',
       link: 'http://www.beasiswa.or.id/index.php/',
@@ -26,7 +26,7 @@ module.exports = {
     {
       nama: 'Sampoerna',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-09-10'),
+      tanggal_pendaftaran: new Date('2023-09-10'),
       deskripsi: 'Beasiswa yang memberikan kemudahan akses pendidikan bagi siswa yang bebakat secara akademis namun mampu secara finansial. Hingga saat ini, program beasiswa telah membina lebih 43.000 pemimpin masa depan bangsa yang menjanjikan dan berkualitas.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiwa%20Sampoerna.png',
       link: 'https://www.sampoernafoundation.org/scholarship/',
@@ -36,7 +36,7 @@ module.exports = {
     {
       nama: 'Bank Indonesia',
       jenis_beasiswa: 'Pemerintah',
-      tenggat_waktu: new Date('2023-09-05'),
+      tanggal_pendaftaran: new Date('2023-09-05'),
       deskripsi: 'Beasiswa untuk mahasiswa yang membutuhkan bantuan keuangan.',
       deskripsi: 'Beasiswa Bank Indonesia merupakan beasiswa prestasi yang diberikan oleh Bank Indonesia untuk mahasiswa dengan jenjang Pendidikan Starata 1 (S1) di berbagai perguruan tinggi negeri dan swasta.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Bank%20Indonesia.png',
@@ -47,7 +47,7 @@ module.exports = {
     {
       nama: 'CIMB Niaga',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-09-05'),
+      tanggal_pendaftaran: new Date('2023-09-05'),
       deskripsi: 'Beasiswa CIMB Niaga 2023 adalah program yang membuka pintu peluang bagi mahasiswa S1 dan sederajat untuk meraih bantuan finansial dalam hal biaya kuliah dan operasional pendidikan. Selain itu, program ini juga mencakup fasilitas penunjang pendidikan serta biaya penyusunan skripsi. Dan peluang mengikuti seleksi karyawan di CIMB Niaga, membuka pintu menuju karier yang menjanjikan di lembaga keuangan ternama.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20CIMB%20Niaga.png',
       link: 'https://kejarmimpi.id/beasiswacimbniaga/',
@@ -57,7 +57,7 @@ module.exports = {
     {
       nama: 'Pertamina Sobat Bumi',
       jenis_beasiswa: 'Prestasi',
-      tenggat_waktu: new Date('2023-04-25'),
+      tanggal_pendaftaran: new Date('2023-04-25'),
       deskripsi: 'Beasiswa sobat Bumi merupakan apresiasi kepada mahasiwa berprestasi secara akademik, aktif dalam organisasi atau kegiatan sosial-kemasyarakatan, serta memiliki kepedulian terhadap lingkungan',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20pertamina%20sobat%20bumi.png',
       link: 'https://beasiswa.pertaminafoundation.org/home/beasiswa/sobatbumi',
@@ -67,7 +67,7 @@ module.exports = {
     {
       nama: 'Paragon',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-08-17'),
+      tanggal_pendaftaran: new Date('2023-08-17'),
       deskripsi: 'Beasiswa Paragon Scholarship merupakan beasiswa dari Paragon sebagai salah satu implementasi Paragon yakni mendukung pendidikan dan kesehatan bangsa. Selain mendapatkan bantuan dana UKT dengan Nominal Rp 6.250.000,- per semester sampai dengan tahun terakhir, juga mendapatkan pengembangan diri hingga tahun terakhir dengan pakar komunikasi, presentasi, kepemimpinan, dan lain lain.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Paragon.png',
       link: 'https://www.paragon-innovation.com/scholarship',
@@ -77,7 +77,7 @@ module.exports = {
     {
       nama: 'Tanoto Foundation',
       jenis_beasiswa: 'Prestasi',
-      tenggat_waktu: new Date('2023-10-01'),
+      tanggal_pendaftaran: new Date('2023-10-01'),
       deskripsi: ' Program Beasiswa dah kepemimpinan TELADAN adalah insisiatif Tanoto Fondation dalam bentuk program pengembangan kepemimpinan untuk melahirkan generasi muda Indonesia sebagai pemimpin masa depan yang bertanggung jawab  ',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Tanoto.png',
       link: 'https://www.tanotofoundation.org/id/teladan2023/',
@@ -87,7 +87,7 @@ module.exports = {
     {
       nama: 'Marga Jaya',
       jenis_beasiswa: 'Prestasi',
-      tenggat_waktu: new Date('2023-06-30'),
+      tanggal_pendaftaran: new Date('2023-06-30'),
       deskripsi: 'Beasiswa Marga Pembangunan Jaya merupakan Program CSR dari jaya group untuk perguruan tinggi yang masuk dalam list Yayasan Marga Pembangunan Jaya (YMPJ), Program Beasiswa Pembangunan Jaya Rp. 6 Juta/Orang Bagi Mahasiswa Berprestasi, dari Perguruan Tinggi Negri/Swasta Lain Terakreditasi Minimal B.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Marga%20Jaya.png',
       link: 'http://beasiswa.margajaya.org/',
@@ -97,7 +97,7 @@ module.exports = {
     {
       nama: 'BSI Scholarship',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-10-06'),
+      tanggal_pendaftaran: new Date('2023-10-06'),
       deskripsi: 'Program BSI Scholarship Afirmasi adalah program pemberian bantuan biaya pendidikan yang ditujukan untuk tingkat pendidikan perguruan tinggi mulai dari Diploma (D3) sampai Sarjana (S1) atau sederajat yang berasal dari keluarga yang kurang mampu guna mendukung keberlanjutan pendidikan yang berkualitas. Selain itu BSI juga meneydiakan beasiswa bagi mahasiswa yang berprestasi.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiwa%20BSI.png',
       link: 'https://didikumat.org/bsi-scholarship',
@@ -107,7 +107,7 @@ module.exports = {
     {
       nama: 'Beasiswa BAZNAS',
       jenis_beasiswa: 'Pemerintah',
-      tenggat_waktu: new Date('2023-07-12'),
+      tanggal_pendaftaran: new Date('2023-07-12'),
       deskripsi: 'Beasiswa BAZNAS adalah program BAZNAS yang memiliki tugas menyediakan dana pendidikan demi terjaminnya keberlangsungan program pendidikan sebagai pertanggungjawaban antar generasi dan menyiapkan generasi penerus bangsa yang memiliki kedalaman ilmu pengetahuan, akhlak yang luhur, unggul dan berdaya saing.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Baznaz.png',
       link: 'https://beasiswa.baznas.go.id/',
@@ -117,7 +117,7 @@ module.exports = {
     {
       nama: 'BRILiaN Scholarship',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-10-14'),
+      tanggal_pendaftaran: new Date('2023-10-14'),
       deskripsi: 'Merupakan beasiswa yang diberikan kepada mahasiswa S1 dari PTN Mitra YBM BRI dengan bantuan berupa tunjangan prestasi selama 1 tahun.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20BRI.png',
       link: 'http://bbri.id/scholarship2023',
@@ -127,7 +127,7 @@ module.exports = {
     {
       nama: 'Beasiswa Unggulan',
       jenis_beasiswa: 'Pemerintah',
-      tenggat_waktu: new Date('2023-08-17'),
+      tanggal_pendaftaran: new Date('2023-08-17'),
       deskripsi: 'Beasiswa Unggulan adalah pemberian biaya pendidikan oleh pemerintah Indonesia kepada putra-putri terbaik bangsa Indonesia pada perguruan tinggi penerima peserta didik program Beasiswa Unggulan. Beasiswa Unggulan terdiri dari program beasiswa bergelar (degree) dan non-gelar (non-degree).',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Unggulan.png',
       link: 'https://beasiswaunggulan.kemdikbud.go.id/',
@@ -137,7 +137,7 @@ module.exports = {
     {
       nama: 'Beasiswa Van Deventer',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-03-10'),
+      tanggal_pendaftaran: new Date('2023-03-10'),
       deskripsi: 'VDMS merupakan beasiswa yang diberikan kepada mahasiswa D3, D4, dan S1. Saat ini, VDMS menyediakan sekitar 800 beasiswa setiap tahunnya kepada pemuda Indonesia yang berbakat dan berasal dari keluarga sederhana.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Van%20deventer.png',
       link: 'http://vandeventermaas.or.id/ers/',
@@ -147,7 +147,7 @@ module.exports = {
     {
       nama: 'Beasiswa DataPrint',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-10-31'),
+      tanggal_pendaftaran: new Date('2023-10-31'),
       deskripsi: 'Beasiswa yang dibagikan diharapkan dapat meringankan biaya pendidikan sekaligus mendorong penerima beasiswa untuk lebih berprestasi, aktif serta kreatif dimanapun kalian berada.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20data%20print.png',
       link: 'https://beasiswadataprint.com/',
@@ -157,7 +157,7 @@ module.exports = {
     {
       nama: 'Beasiswa Bakti BCA',
       jenis_beasiswa: 'Pemerintah',
-      tenggat_waktu: new Date('2023-10-23'),
+      tanggal_pendaftaran: new Date('2023-10-23'),
       deskripsi: 'Penerima Beasiswa Bakti BCA akan memperoleh manfaat berupa bantuan Dana Pendidikan dan pengembangan diri melalui Future Ready Generation Program.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20BAKTI%20BCA.png',
       link: 'https://www.bca.co.id/en/tentang-bca/CSR/Bakti-BCA/solusi-cerdas/beasiswa-bakti-bca',
@@ -167,7 +167,7 @@ module.exports = {
     {
       nama: 'KJMU',
       jenis_beasiswa: 'Prestasi',
-      tenggat_waktu: new Date('2023-09-22'),
+      tanggal_pendaftaran: new Date('2023-09-22'),
       deskripsi: 'Program Kartu Jakarta Mahasiswa Unggul ditujukan untuk calon/mahasiswa dari keluarga dengan ekonomi tidak mampu namun memiliki potensi akademik yang baik',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20KJMU.png',
       link: 'https://www.jakarta.go.id/kjmu',
@@ -177,7 +177,7 @@ module.exports = {
     {
       nama: 'Bakti Nusa',
       jenis_beasiswa: 'Bantuan',
-      tenggat_waktu: new Date('2023-10-16'),
+      tanggal_pendaftaran: new Date('2023-10-16'),
       deskripsi: 'BAKTI NUSA merupakan Program penumbuhan kepemimpinan aktivis mahasiswa untuk membentuk pemimpin Berintegritas, Cendekia, Transformatif, dan Melayani Masyarakat. Syarat pendaftaran : Mahasiswa muslim semester 7 dengan IPK minimal 3.00.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Group%202129.png',
       link: 'https://www.baktinusa.id/',
@@ -187,7 +187,7 @@ module.exports = {
     {
       nama: 'XL Future Leader',
       jenis_beasiswa: 'Pemerintah',
-      tenggat_waktu: new Date('2023-07-31'),
+      tanggal_pendaftaran: new Date('2023-07-31'),
       deskripsi: 'XL Axiara Future Leaders (XLFL) merupakan sustainability program dari XL Axiata yang befokus untuk memberikan pelatihan soft-skill intensif kepada mahasiswa terpilih. Program dirancang untuk membekali anak muda Indonesia untuk mampu dan siap bersaing secara global.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Xl.png',
       link: 'https://xlfutureleaders.com/',
@@ -197,7 +197,7 @@ module.exports = {
     {
       nama: 'MPM Berbagi',
       jenis_beasiswa: 'Bantuan',
-      tenggat_waktu: new Date('2023-08-31'),
+      tanggal_pendaftaran: new Date('2023-08-31'),
       deskripsi: 'Beasiswa MPM berbagi memberikan beasiswa kepada mahasiswa yang berada di tingkat D3,D4 dan S1 dari segala jurusan yang memiliki kesulitan ekonomi namun memiliki prestasi dan prilaku yang baik. ',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20MPM.png',
       link: 'https://kuliahdimana.id/index.php/SeputarKampus/detailBeasiswa/101/Beasiswa-MPM-Berbagi',
@@ -207,7 +207,7 @@ module.exports = {
     {
       nama: 'APERTI-BUMN',
       jenis_beasiswa: 'Prestasi',
-      tenggat_waktu: new Date('2023-06-17'),
+      tanggal_pendaftaran: new Date('2023-06-17'),
       deskripsi: 'Program Beasiswa ini dapat diikuti oleh siswa siswi lulusan SMA / SMK / MA Sederajat  yang berminat menempuh Pendidikan Strata 1 atau Diploma di salah satu dari 8 Perguruan Tinggi dibawah APERTI BUMN.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20BUMN%20APERTI.png',
       link: 'https://admission.ulbi.ac.id/p/jalur-aperti-bumn.html',
@@ -217,7 +217,7 @@ module.exports = {
     {
       nama: 'Cargil Global',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-05-20'),
+      tanggal_pendaftaran: new Date('2023-05-20'),
       deskripsi: 'Cargill Global Scholars sendiri merupakan program beasiswa skala dunia yang membantu biaya pendidikan kuliah selama 2 tahun terakhir untuk studi S1',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Cargil.png',
       link: 'https://www.iief.or.id/cargill-global-scholars-program',
@@ -227,7 +227,7 @@ module.exports = {
     {
       nama: 'Bakti Tani',
       jenis_beasiswa: 'Swasta',
-      tenggat_waktu: new Date('2023-08-02'),
+      tanggal_pendaftaran: new Date('2023-08-02'),
       deskripsi: 'Program beasiswa Bakti Tani 2022 merupakan beasiswa yang dibuka oleh TaniFoundation dan Yayasan Khouw Kalbe. Beasiswa ini diperuntukkan bagi siswa SMA/SMK sederajat dan mahasiswa S1 yang ingin memajukan bidang pertanian di daerah asalnya.Kamu yang lolos beasiswa Bakti Tani 2022 akan memperoleh bantuan dana pendidikan yang disalurkan melalui perguruan tinggi penerima beasiswa. Adapun biaya pendidikan yang akan diberikan maksimal Rp6 juta per semester hingga lulus.',
       img_url: 'https://storage.googleapis.com/grant-me-ps562/Gambar%20Beasiswa/Beasiswa%20Bakti%20Tani.png',
       link: 'https://indbeasiswa.com/2022/01/beasiswa-bakti-tani.html',
