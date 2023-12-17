@@ -9,4 +9,4 @@ const verifyToken = (token) => {
   return jwt.verify(token, secret);
 };
 
-module.exports = { accessToken, verifyToken }; 
+module.exports = { accessToken, verifyToken };
