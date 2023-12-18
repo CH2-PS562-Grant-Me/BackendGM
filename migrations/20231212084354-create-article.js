@@ -26,7 +26,7 @@ module.exports = {
       },
       ulasan: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       sumber: {
         allowNull: false,

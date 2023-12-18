@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       deskripsi: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       img_url: {
         type: Sequelize.STRING
