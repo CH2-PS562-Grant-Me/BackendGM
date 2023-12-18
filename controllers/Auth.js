@@ -62,8 +62,8 @@ const login = async (req, res) => {
     }
     else {
       res.status(401).json({
-        error: true,
         status: 401,
+        error: true,
         message: 'Invalid email/password'
       })
     }
