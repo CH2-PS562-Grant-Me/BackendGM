@@ -17,11 +17,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      prestasi_internasional: {
-        allowNull: false,
-        type: Sequelize.FLOAT
-      },
-      prestasi_top3_nasional: {
+      sertifikasi_profesional: {
         allowNull: false,
         type: Sequelize.FLOAT
       },
@@ -29,11 +25,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      pengalaman_magang: {
+      lomba_nasional: {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      pengalaman_kepanitiaan: {
+      prestasi_internasional: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      lomba_internasional: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      magang: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      kepanitiaan: {
         allowNull: false,
         type: Sequelize.FLOAT
       },

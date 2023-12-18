@@ -99,8 +99,17 @@ const deletescholarshipbyId = async (req, res) => {
 const recomendScholarship = async (req, res) => {
      try {
 
-          const data = req.body
-
+          let data = {
+               IPK: req.body.IPK,
+               sertifikasi: req.body.sertifikasi,
+               SertifikasiProfesional: req.body.SertifikasiProfesional,
+               prestasiNasional: req.body.prestasiNasional,
+               lombaNasional: req.body.lombaNasional,
+               prestasiInternasional: req.body.prestasiInternasional,
+               lombaInternasional: req.body.lombaInternasional,
+               internMagang: req.body.internMagang,
+               Kepanitiaan: req.body.Kepanitiaan,
+          }
           const getPredict = await axios.post(process.env.URL_MODEL, data)
 
           const result = getPredict.data
@@ -110,12 +119,15 @@ const recomendScholarship = async (req, res) => {
                     jenis_beasiswa: result.jenis_beasiswa
                }
           })
-          // console.log(getPredict)
-          if (!scholarship) {
-               const recipient = await Recipient.create(result)
-               res.status(200).json(recipient)
+
+          if (scholarship) {
+               const recipient = await Recipient.create(data)
+               res.status(200).json({
+                    status: 200,
+                    message: 'success',
+                    data: scholarship
+               })
           }
-          res.json(scholarship)
      }
      catch (error) {
           res.status(500).json({ error: 'Gagal melakukan prediksi' });

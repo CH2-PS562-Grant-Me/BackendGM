@@ -16,11 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   Recipient.init({
     IPK: DataTypes.FLOAT,
     sertifikasi: DataTypes.FLOAT,
-    prestasi_internasional: DataTypes.FLOAT,
-    prestasi_top3_nasional: DataTypes.FLOAT,
+    sertifikasi_profesional: DataTypes.FLOAT,
     prestasi_nasional: DataTypes.FLOAT,
-    pengalaman_magang: DataTypes.FLOAT,
-    pengalaman_kepanitiaan: DataTypes.FLOAT,
+    lomba_nasional: DataTypes.FLOAT,
+    prestasi_internasional: DataTypes.FLOAT,
+    lomba_internasional: DataTypes.FLOAT,
+    magang: DataTypes.FLOAT,
+    kepanitiaan: DataTypes.FLOAT,
     id_scholarship: DataTypes.INTEGER
   }, {
     sequelize,

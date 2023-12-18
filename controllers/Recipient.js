@@ -9,11 +9,13 @@ const addrecipient = async (req, res) => {
           let data = {
                IPK: req.body.IPK,
                sertifikasi: req.body.sertifikasi,
-               prestasi_internasional: req.body.prestasi_internasional,
-               prestasi_top3_nasional: req.body.prestasi_top3_nasional,
+               sertifikasi_profesional: req.body.sertifikasi_profesional,
                prestasi_nasional: req.body.prestasi_nasional,
-               pengalaman_magang: req.body.pengalaman_magang,
-               pengalaman_kepanitiaan: req.body.pengalaman_kepanitiaan,
+               lomba_nasional: req.body.lomba_nasional,
+               prestasi_internasional: req.body.prestasi_internasional,
+               lomba_internasional: req.body.lomba_internasional,
+               magang: req.body.magang,
+               kepanitiaan: req.body.kepanitiaan,
           };
           const Data = await Recipient.create(data);
           res.status(201).json({
@@ -47,7 +49,7 @@ const getrecipientbyId = async (req, res) => {
 //Get All Recipient
 const getAllRecipients = async (req, res) => {
      try {
-          let data = await Recipient.findAll({})
+          const data = await Recipient.findAll({})
           res.status(200).json({
                status: 200,
                data: data

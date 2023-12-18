@@ -1,4 +1,10 @@
-const { User, Profile } = require('../models')
+const { User, Profile } = require('../models');
+const Storage = require('@google-cloud/storage');
+
+// const storage = new Storage({
+  
+// })
+
 
 const getProfile = async (req, res) => {
   try {

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 const { hashPassword } = require('../helpers/bcrypt');
-const { Profile } = require('./profile'); 
+const { Profile } = require('../models/profile'); 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -39,9 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-  });
-  User.afterCreate(async (user) => {
-    await Profile.create({ user_id: user.id });
+    hooks: {
+      afterCreate: (user) => {
+        Profile.create({ user_id: user.id });
+      },
+    },
   });
   return User;
 };
