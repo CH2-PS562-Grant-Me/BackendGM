@@ -11,6 +11,7 @@ const articlesRouter = require('./routes/articles');
 const recipientsRouter = require('./routes/recipients');
 const scholarshipRouter = require('./routes/scholarship');
 const profileRouter = require('./routes/profile');
+const predictRouter = require('./routes/predict')
 const { errorHandler } = require('./middlewares/errorHandler');
 const { authectication } = require('./middlewares/authentication');
 
@@ -30,6 +31,7 @@ app.use('/recipients', recipientsRouter);
 app.use('/articles', authectication, articlesRouter);
 app.use('/scholarships', scholarshipRouter);
 app.use('/profile', profileRouter);
+app.use('/predict', predictRouter);
 app.use(errorHandler);
 
 module.exports = app;

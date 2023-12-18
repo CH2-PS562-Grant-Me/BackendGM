@@ -1,8 +1,4 @@
-const { Scholarship, Recipient } = require('../models');
-const request = require('request');
-const { getAllRecipients } = require('./Recipient');
-const axios = require('axios');
-
+const { Scholarship } = require('../models');
 
 //POST data
 const addscholarship = async (req, res) => {
@@ -96,50 +92,11 @@ const deletescholarshipbyId = async (req, res) => {
      }
 };
 
-const recomendScholarship = async (req, res) => {
-     try {
-
-          let data = {
-               IPK: req.body.IPK,
-               sertifikasi: req.body.sertifikasi,
-               SertifikasiProfesional: req.body.SertifikasiProfesional,
-               prestasiNasional: req.body.prestasiNasional,
-               lombaNasional: req.body.lombaNasional,
-               prestasiInternasional: req.body.prestasiInternasional,
-               lombaInternasional: req.body.lombaInternasional,
-               internMagang: req.body.internMagang,
-               Kepanitiaan: req.body.Kepanitiaan,
-          }
-          const getPredict = await axios.post(process.env.URL_MODEL, data)
-
-          const result = getPredict.data
-
-          const scholarship = await Scholarship.findAll({
-               where: {
-                    jenis_beasiswa: result.jenis_beasiswa
-               }
-          })
-
-          if (scholarship) {
-               const recipient = await Recipient.create(data)
-               res.status(200).json({
-                    status: 200,
-                    message: 'success',
-                    data: scholarship
-               })
-          }
-     }
-     catch (error) {
-          res.status(500).json({ error: 'Gagal melakukan prediksi' });
-     }
-}
-
 module.exports = {
      addscholarship,
      getAllscholarship,
      getscholarshipbyId,
      updatescholarsip,
      deletescholarshipbyId,
-     recomendScholarship
 }
 
