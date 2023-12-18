@@ -1,5 +1,5 @@
-const express = require('express')
-const { Scholarship } = require('../models');
+const { Scholarship, Recipient } = require('../models');
+const request = require('request');
 const { getAllRecipients } = require('./Recipient');
 const axios = require('axios');
 
@@ -97,53 +97,28 @@ const deletescholarshipbyId = async (req, res) => {
 };
 
 const recomendScholarship = async (req, res) => {
-     // try{
-     //      const response = await axios.get('https://doa-doa-api-ahmadramadhan.fly.dev/api')
-     //      const data = response.data
-     //      // console.log(data)
-     //      res.json({data})
-     // }catch(error){
-     //      res.json({error})
-     // }
-     const { IPK,
-          Sertifikat,
-          SertifikatProfesional,
-          prestasiNasional,
-          lombaNasional,
-          prestasiInternasional,
-          lombainternasional,
-          internMagang,
-          Kepanitiaan } = req.body
-
      try {
-          const getPredict = await axios.post('http://127.0.0.1:5000/predict', {
-               IPK,
-               Sertifikat,
-               SertifikatProfesional,
-               prestasiNasional,
-               lombaNasional,
-               prestasiInternasional,
-               lombainternasional,
-               internMagang,
-               Kepanitiaan
-          })
 
-          
+          const data = req.body
 
-          const data = getPredict.data
-          // console.log(getPredict)
-          res.status(200).json({
-               status: 200,
-               data: {
-                    "Persentase ": data.Persentase,
-                    "Tag ": data.Tag,
+          const getPredict = await axios.post(process.env.URL_MODEL, data)
+
+          const result = getPredict.data
+
+          const scholarship = await Scholarship.findAll({
+               where: {
+                    jenis_beasiswa: result.jenis_beasiswa
                }
           })
+          // console.log(getPredict)
+          if (!scholarship) {
+               const recipient = await Recipient.create(result)
+               res.status(200).json(recipient)
+          }
+          res.json(scholarship)
      }
      catch (error) {
-          res.status(400).json({
-               message: error.message
-          })
+          res.status(500).json({ error: 'Gagal melakukan prediksi' });
      }
 }
 

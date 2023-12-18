@@ -40,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
-  // User.afterCreate(async (user) => {
-  //   await Profile.create({ user_id: user.id });
-  // });
+  User.afterCreate(async (user) => {
+    await Profile.create({ user_id: user.id });
+  });
   return User;
 };
