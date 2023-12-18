@@ -29,7 +29,9 @@ const register = async (req, res) => {
 
   } catch (error) {
     res.status(400).json({
-      message: error.message
+      status: 400,
+      error: true,
+      message: 'Register Gagal'
     })
   }
 }
@@ -78,6 +80,7 @@ const login = async (req, res) => {
   catch (error) {
     res.status(401).json({
       status: 401,
+      error: true,
       message: 'Invalid email/password'
     })
   };
