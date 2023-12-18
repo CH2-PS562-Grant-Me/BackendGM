@@ -1,6 +1,6 @@
 const { comparePassword, hashPassword } = require('../helpers/bcrypt');
 const { accessToken } = require('../helpers/jwt');
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 
 const register = async (req, res) => {
   const { nama, email, password } = req.body;
@@ -20,6 +20,11 @@ const register = async (req, res) => {
         email,
         password: await hashPassword(password)
       });
+      if(user){
+        await Profile.create({
+          user_id: user.id
+        })
+      }
       res.status(201).json({
         status: 201,
         message: 'Akun berhasil terdaftar',
