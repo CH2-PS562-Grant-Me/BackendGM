@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { Recipient, Scholarship } = require('../models');
 
 const recomendScholarship = async (req, res) => {
   try {
@@ -15,7 +16,7 @@ const recomendScholarship = async (req, res) => {
     })
 
     if (scholarship) {
-      const recipient = await Recipient.create(data)
+      await Recipient.create(data)
       res.status(200).json({
         status: 200,
         message: 'success',

@@ -1,6 +1,4 @@
-const express = require('express')
 const { Article } = require('../models')
-
 
 //add
 const addarticle = async (req, res) => {
