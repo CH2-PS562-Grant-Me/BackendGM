@@ -2,9 +2,14 @@ const { User, Profile } = require('../models');
 const Storage = require('@google-cloud/storage');
 
 // const storage = new Storage({
-  
-// })
+//   projectId: process.env.GCLOUD_PROJECT,
+//   credentials: {
+//     client_email: process.env.GCLOUD_CLIENT_EMAIL,
+//     private_key: process.env.GCLOUD_PRIVATE_KEY
+//   }
+// });
 
+// const bucket = storage.bucket(process.env.GCS_BUCKET);
 
 const getProfile = async (req, res) => {
   try {
@@ -40,7 +45,11 @@ const getProfile = async (req, res) => {
 const updateProfile = async (req, res) => {
   try {
     const user_id = req.params.user_id;
-    const { img_url } = req.body;
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
 
     // Cari user berdasarkan ID
     const user = await User.findByPk(user_id);
@@ -52,14 +61,16 @@ const updateProfile = async (req, res) => {
     // Cek apakah user memiliki profil
     let profile = await Profile.findOne({ where: { user_id: user_id } });
 
-    if (!profile) {
-      // Jika belum ada profil, buat profil baru
-      profile = await Profile.create({ user_id: user_id, img_url });
-    } else {
-      // Jika sudah ada profil, update img_url
-      profile.img_url = img_url;
-      await profile.save();
-    }
+    blobStream.on('error', (err) => {
+      console.error(err);
+      res.status(500).json({ message: 'Error uploading file' });
+    });
+
+    blobStream.on('finish', () => {
+      res.status(200).json({ message: 'File uploaded successfully', data: profile });
+    });
+
+    blobStream.end(file.buffer);
 
     return res.status(200).json({ message: 'Profile picture updated successfully' });
   } catch (error) {

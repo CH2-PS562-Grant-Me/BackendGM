@@ -39,11 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    hooks: {
-      afterCreate: (user) => {
-        Profile.create({ user_id: user.id });
-      },
-    },
+    // hooks: {
+    //   afterCreate: (user) => {
+    //     Profile.create({ user_id: user.id });
+    //   },
+    // },
   });
   return User;
 };
