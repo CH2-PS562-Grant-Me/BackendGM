@@ -5,4 +5,4 @@ node_modules
 .env
 
 # Ignore file grant-me-credentials
-grant-me-credentials
+grant-me-credentials.json
