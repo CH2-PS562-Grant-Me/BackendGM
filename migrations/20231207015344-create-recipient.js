@@ -38,7 +38,6 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       id_scholarship: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

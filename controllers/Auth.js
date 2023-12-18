@@ -51,7 +51,9 @@ const login = async (req, res) => {
       res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true })
       res.status(200).json({
         status: 200,
-        data: {
+        error: false,
+        message: "success",
+        data: { 
           id: user.id,
           email: user.email,
           accessToken: token
@@ -60,6 +62,7 @@ const login = async (req, res) => {
     }
     else {
       res.status(401).json({
+        error: true,
         status: 401,
         message: 'Invalid email/password'
       })
