@@ -42,7 +42,14 @@ const login = async (req, res) => {
       where: { email }
     })
 
-    if (comparePassword(password, user.password)) {
+    if (!user) {
+      res.status(401).json({
+        status: 401,
+        error: true,
+        message: 'Akun belum terdaftar'
+      })
+    }
+    else if (comparePassword(password, user.password)) {
       let payload = {
         id: user.id,
         email: user.email
@@ -53,7 +60,7 @@ const login = async (req, res) => {
         status: 200,
         error: false,
         message: "success",
-        data: { 
+        data: {
           id: user.id,
           email: user.email,
           accessToken: token
@@ -61,20 +68,17 @@ const login = async (req, res) => {
       })
     }
     else {
-      res.status(401).json({
+      return res.status(401).json({
         status: 401,
         error: true,
         message: 'Invalid email/password'
-      })
+      });
     }
-
   }
-  catch (err) {
-    res.status(500).json({
-      err: {
-        status: 500,  
-        message: 'Internal Server Error'
-      }
+  catch (error) {
+    res.status(401).json({
+      status: 401,
+      message: 'Invalid email/password'
     })
   };
 }
