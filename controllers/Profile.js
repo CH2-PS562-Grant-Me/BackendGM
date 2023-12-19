@@ -1,4 +1,3 @@
-const { where } = require('sequelize');
 const { User, Profile } = require('../models');
 const { Storage } = require('@google-cloud/storage');
 const path = require('path');
