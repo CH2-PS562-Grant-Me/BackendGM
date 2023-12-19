@@ -6,35 +6,49 @@ const register = async (req, res) => {
   const { nama, email, password } = req.body;
 
   try {
-    const userExists = await User.findOne({
-      where: { email }
-    })
-    if (userExists) {
-      res.status(422).json({
+    if (password.length < 8) {
+      return res.status(422).json({
         status: 422,
-        message: 'Email telah terdaftar'
-      })
-    } else {
-      const user = await User.create({
-        nama,
-        email,
-        password: await hashPassword(password)
-      });
-      res.status(201).json({
-        status: 201,
-        message: 'Akun berhasil terdaftar',
-        data: user
+        error: true,
+        message: 'Minimal password 8 karakter'
       });
     }
 
+    const userExists = await User.findOne({
+      where: { email }
+    });
+
+    if (userExists) {
+      return res.status(422).json({
+        status: 422,
+        error: true,
+        message: 'Email telah terdaftar'
+      });
+    }
+
+    const hashedPassword = await hashPassword(password);
+
+    const user = await User.create({
+      nama,
+      email,
+      password: hashedPassword
+    });
+
+    return res.status(201).json({
+      status: 201,
+      error: false,
+      message: 'Akun berhasil terdaftar',
+      data: user
+    });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       status: 400,
       error: true,
       message: 'Register Gagal'
-    })
+    });
   }
-}
+};
+
 
 const login = async (req, res) => {
   const { email, password } = req.body
