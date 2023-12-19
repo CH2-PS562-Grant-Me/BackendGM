@@ -1,6 +1,6 @@
 const { comparePassword, hashPassword } = require('../helpers/bcrypt');
 const { accessToken } = require('../helpers/jwt');
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 
 const register = async (req, res) => {
   const { nama, email, password } = req.body;
@@ -10,7 +10,23 @@ const register = async (req, res) => {
       return res.status(422).json({
         status: 422,
         error: true,
-        message: 'Minimal password 8 karakter'
+        message: 'Minimal password 8 karakter',
+      })
+    } else {
+      const user = await User.create({
+        nama,
+        email,
+        password: await hashPassword(password)
+      });
+      if(user){
+        await Profile.create({
+          user_id: user.id
+        })
+      }
+      res.status(201).json({
+        status: 201,
+        message: 'Akun berhasil terdaftar',
+        data: user
       });
     }
 
