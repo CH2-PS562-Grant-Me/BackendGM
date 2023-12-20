@@ -11,34 +11,15 @@ const register = async (req, res) => {
         status: 422,
         error: true,
         message: 'Minimal password 8 karakter',
-      })
-    } else {
-      const user = await User.create({
-        nama,
-        email,
-        password: await hashPassword(password)
-      });
-      if(user){
-        await Profile.create({
-          user_id: user.id
-        })
-      }
-      res.status(201).json({
-        status: 201,
-        message: 'Akun berhasil terdaftar',
-        data: user
       });
     }
 
-    const userExists = await User.findOne({
-      where: { email }
-    });
-
+    const userExists = await User.findOne({ where: { email } });
     if (userExists) {
       return res.status(422).json({
         status: 422,
         error: true,
-        message: 'Email telah terdaftar'
+        message: 'Email telah terdaftar',
       });
     }
 
@@ -47,20 +28,22 @@ const register = async (req, res) => {
     const user = await User.create({
       nama,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
-    return res.status(201).json({
+    await Profile.create({ user_id: user.id });
+
+    res.status(201).json({
       status: 201,
       error: false,
       message: 'Akun berhasil terdaftar',
-      data: user
+      data: user,
     });
   } catch (error) {
-    return res.status(400).json({
+    res.status(400).json({
       status: 400,
       error: true,
-      message: 'Register Gagal'
+      message: error.message,
     });
   }
 };

@@ -38,66 +38,54 @@ const getProfile = async (req, res) => {
 
 
 const updateProfile = async (req, res) => {
-  try {
-    const user_id = req.params.user_id;
-    const file = req.file;
 
-    const ext = path.extname(file.originalname).toLowerCase();
+  const user_id = req.params.user_id;
+  const file = req.file;
 
-    if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
-      res
-        .status(400)
-        .json({
-          status: 'fail',
-          message: 'Hanya dapat menggunakan file gambar (.png, .jpg atau .jpeg)'
-        });
-    }
-
-    if (!file) {
-      res.status(400).json({ message: 'No file uploaded' });
-    }
-
-    const user = await Profile.findOne({ where: { user_id } });
-
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
-    }
-
-
-    // Upload the file to Google Cloud Storage
-    const folderPath = 'Profile'
-    const blob = bucket.file(`${folderPath}/${file.originalname}`);
-    const blobStream = blob.createWriteStream({
-    });
-
-    blobStream.on("error", (err) => {
-      res.status(400).json(
-        {
-          message: err.message
-        }
-      )
-    });
-
-    blobStream.on('finish', async () => {
-      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-
-      // Update the profile with the image URL
-      await Profile.update({ img_url: publicUrl },
-        {
-          where: {
-            user_id: user_id
-          }
-        });
-
-      res.status(200).json({
-        success: true,
-        user
-      });
-    });
-
-    blobStream.end(file.buffer);
-  } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
+  // Check if file exists
+  if (!file) {
+    return res.status(400).json({ message: 'No file uploaded' });
   }
-}
+
+  // Check file extension
+  const allowedExtensions = ['.png', '.jpg', '.jpeg'];
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (!allowedExtensions.includes(ext)) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Hanya dapat menggunakan file gambar (.png, .jpg atau .jpeg)'
+    });
+  }
+
+  // Check if user exists
+  const user = await Profile.findOne({ where: { user_id } });
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Upload the file to Google Cloud Storage
+  const folderPath = 'Profile';
+  const blob = bucket.file(`${folderPath}/${file.originalname}`);
+  const blobStream = blob.createWriteStream();
+
+  blobStream.on("error", (err) => {
+    return res.status(400).json({ message: err.message });
+  });
+
+  blobStream.on('finish', async () => {
+    console.log('success')
+  });
+
+  blobStream.end(file.buffer);
+  const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+
+  // Update the profile with the image URL
+  await Profile.update({ img_url: publicUrl }, { where: { user_id } });
+
+  res.status(200).json({
+    status: true,
+    user,
+  });
+};
+
 module.exports = { getProfile, updateProfile }
