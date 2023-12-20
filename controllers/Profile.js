@@ -42,6 +42,11 @@ const updateProfile = async (req, res) => {
   const user_id = req.params.user_id;
   const file = req.file;
 
+  const user = await Profile.findByPk(user_id);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  
   // Check if file exists
   if (!file) {
     return res.status(400).json({ message: 'No file uploaded' });
@@ -58,10 +63,6 @@ const updateProfile = async (req, res) => {
   }
 
   // Check if user exists
-  const user = await Profile.findOne({ where: { user_id } });
-  if (!user) {
-    return res.status(404).json({ message: 'User not found' });
-  }
 
   // Upload the file to Google Cloud Storage
   const folderPath = 'Profile';
