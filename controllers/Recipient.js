@@ -18,10 +18,11 @@ const addrecipient = async (req, res) => {
           const Data = await Recipient.create(data);
           res.status(201).json({
                status: "Data Berhasil Ditambahkan",
+               error: false,
                data: Data,
           });
      } catch (error) {
-          res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
+          res.status(400).json({error: true, message: "Gagal Menambahkan Data", error: error.message });
      }
 };
 
@@ -34,13 +35,14 @@ const getrecipientbyId = async (req, res) => {
           if (data) {
                res.status(200).json({
                     status: 200,
+                    error: false,
                     data: data
                });
           } else {
-               res.status(404).json({ message: "Data tidak ditemukan" });
+               res.status(404).json({ error: true, message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ message: "Gagal Mendapatkan Data", error: error.message });
+          res.status(500).json({error:true, message: "Gagal Mendapatkan Data", error: error.message });
      }
 };
 
@@ -50,10 +52,11 @@ const getAllRecipients = async (req, res) => {
           const data = await Recipient.findAll({})
           res.status(200).json({
                status: 200,
+               error: false,
                data: data
           })
      } catch (error) {
-          res.status(500).json({ error: error.message })
+          res.status(500).json({error: true, message: error.message })
      }
 }
 
@@ -66,15 +69,16 @@ const updaterecepient = async (req, res) => {
                const updatedRecipient = await Recipient.findByPk(id);
                res.status(200).json({
                     status: 200,
+                    error: false,
                     message: "Data Berhasil di Ubah",
                     data: updatedRecipient
                });
           } else {
-               res.status(404).json({ message: "Data tidak ditemukan" });
+               res.status(404).json({error:true, message: "Data tidak ditemukan" });
           }
      } catch (error) {
           console.error(error);
-          res.status(400).json({ status: 400, message: "Gagal Mengubah Data", error: error });
+          res.status(400).json({ error: true, status: 400, message: "Gagal Mengubah Data", Error: error });
      }
 };
 
@@ -88,16 +92,18 @@ const deleterecipientbyId = async (req, res) => {
           if (recipient) {
                await Recipient.destroy({ where: { id: id } });
                res.status(204).json({
+                    status: 204,
+                    error: false,
                     message: "Data Berhasil di Hapus",
                });
           } else {
-               res.status(404).json({ message: "Data tidak ditemukan" });
+               res.status(404).json({ error:true, message: "Data tidak ditemukan" });
           }
      } catch (error) {
           if (error instanceof Sequelize.ValidationError) {
-               res.status(400).json({ status: 400, message: "Validation error", error: error });
+               res.status(400).json({ status: 400, error:true, message: "Validation error", Error: error });
           } else {
-               res.status(500).json({ status: 500, message: "Gagal Menghapus Data", error: error });
+               res.status(500).json({ status: 500, error:true, message: "Gagal Menghapus Data", Error: error });
           }
      }
 };

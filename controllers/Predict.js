@@ -19,13 +19,14 @@ const recomendScholarship = async (req, res) => {
       await Recipient.create(data)
       res.status(200).json({
         status: 200,
+        error: false,
         message: 'success',
         data: scholarship
       })
     }
   }
   catch (error) {
-    res.status(500).json({ error: 'Gagal melakukan prediksi' });
+    res.status(500).json({ error: false, message: 'Gagal melakukan prediksi' });
   }
 }
 

@@ -13,11 +13,12 @@ const addscholarship = async (req, res) => {
           const createdScholarship = await Scholarship.create(inputData);
           res.status(201).json({
                status: "Data Berhasil Ditambahkan",
+               error: false,
                data: createdScholarship,
           });
      } catch (error) {
           console.error("Gagal Menambahkan Data:", error);
-          res.status(400).json({ status: "Gagal Menambahkan Data", error: error.message });
+          res.status(400).json({ error: true, message: "Gagal Menambahkan Data", status: error.message });
      }
 };
 
@@ -27,10 +28,11 @@ const getAllscholarship = async (req, res) => {
      try {
           let data = await Scholarship.findAll({})
           res.status(200).json({
+               error: false,
                data: data
           })
      } catch (error) {
-          res.status(500).json({ error: error.message })
+          res.status(500).json({ error:true, Error: error.message })
      }
 }
 
@@ -42,13 +44,14 @@ const getscholarshipbyId = async (req, res) => {
           if (data) {
                res.status(200).json({
                     status: 200,
+                    error: false,
                     data: data
                });
           } else {
-               res.status(404).json({ message: "Data tidak ditemukan" });
+               res.status(404).json({error:true, message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ message: "Gagal Mendapatkan Data", error: error.message });
+          res.status(500).json({ error:true, message: "Gagal Mendapatkan Data", status: error.message });
      }
 };
 
@@ -59,17 +62,18 @@ const updatescholarsip = async (req, res) => {
           const id = req.params.id;
           const result = await Scholarship.update(req.body, { where: { id: id } });
           if (result > 0) {
-               const updatedScholarship = await scholarships.findByPk(id);
+               const updatedScholarship = await Scholarship.findByPk(id);
                res.status(200).json({
                     message: "Data Berhasil di Ubah",
+                    error: false,
                     data: updatedScholarship
                });
           } else {
-               res.status(404).json({ status: 404, message: "Data tidak ditemukan" });
+               res.status(404).json({error:true, status: 404, message: "Data tidak ditemukan" });
           }
      } catch (error) {
           console.error(error);
-          res.status(400).json({ status: 400, message: "Gagal Mengubah Data", error: error });
+          res.status(400).json({ error:true, status: 400, message: "Gagal Mengubah Data", status: error });
      }
 };
 
@@ -83,12 +87,13 @@ const deletescholarshipbyId = async (req, res) => {
                await scholarship.destroy({ where: { id: id } });
                res.status(204).json({
                     message: "Data Berhasil di Hapus",
+                    error: false,
                });
           } else {
-               res.status(404).json({ message: "Data tidak ditemukan" });
+               res.status(404).json({error:true, message: "Data tidak ditemukan" });
           }
      } catch (error) {
-          res.status(500).json({ status: 400, message: "Gagal Menghapus Data", error: error });
+          res.status(500).json({error:true, status: 400, message: "Gagal Menghapus Data", status: error });
      }
 };
 
