@@ -6,7 +6,6 @@ This service is using MySQL as the database, so you also have to run MySQL on yo
 ```bash
 npm install
 ```
-
 ### Clone Repository
 ```bash
 git clone https://github.com/CH2-PS562-Grant-Me/BackendGM.git
@@ -40,3 +39,4 @@ To create Scholarships and Articles data
 ```bash
 npm run seed:all
 ```
+You can check the public API documentation that we used for the mobile app <a href= "https://documenter.getpostman.com/view/26660252/2s9YkrZeFi">here</a>.
