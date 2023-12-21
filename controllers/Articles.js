@@ -14,10 +14,17 @@ const addarticle = async (req, res) => {
           const data = await Article.create(article);
           res.status(201).json({
                status: 201,
+               error: false,
+               message: "Berhasil Menambahkan Data",
                data: data,
           });
      } catch (error) {
-          res.status(400).json({ message: "Gagal Menambahkan Data", error: error.message });
+          res.status(400).json({
+               status: 400, 
+               error: true, 
+               message: "Gagal Menambahkan Data", 
+               error: error.message 
+          });
      }
 };
 
@@ -26,10 +33,16 @@ const getAllarticle= async(req,res)=>{
      try{
           let data = await Article.findAll({})
           res.status(200).json({
+               status: 200,
+               error: false,
                data: data
           })
      } catch (error){
-          res.status(500).json({message:"Gagal Mendapatkan Data",error: error.message})
+          res.status(500).json({
+               Status:500,
+               error: true,
+               message:"Gagal Mendapatkan Data",
+               error: error.message})
      }
 }
 
