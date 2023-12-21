@@ -23,13 +23,6 @@ const getProfile = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Ambil informasi profil
-    // const userProfile = {
-    //   nama: user.nama,
-    //   email: user.email,
-    //   img_url: user.Profile ? user.Profile.img_url : null,
-    // };
-
     return res.status(200).json({ success: true, profile: user });
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
@@ -46,7 +39,7 @@ const updateProfile = async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
   }
-  
+
   // Check if file exists
   if (!file) {
     return res.status(400).json({ message: 'No file uploaded' });
@@ -81,7 +74,10 @@ const updateProfile = async (req, res) => {
   const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
   // Update the profile with the image URL
-  await Profile.update({ img_url: publicUrl }, { where: { user_id } });
+  await Profile.update(
+    { img_url: publicUrl},
+    { where: { user_id } }
+  );
 
   res.status(200).json({
     status: true,
