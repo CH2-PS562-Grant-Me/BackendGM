@@ -99,7 +99,28 @@ const login = async (req, res) => {
   };
 }
 
+const logout = (req, res) => {
+  try {
+    // Hapus token dari cookie atau sesi pengguna
+    res.clearCookie("jwt");
+
+    res.status(200).json({
+      status: 200,
+      error: false,
+      message: "Logout berhasil",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: "Gagal logout",
+    });
+  }
+};
+
+
 module.exports = {
   register,
-  login
+  login,
+  logout
 };
